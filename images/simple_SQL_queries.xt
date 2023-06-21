@@ -1,0 +1,33 @@
+```
+/* gets all HGCAL_COND tables and the number of entries (rows) in each */
+  select table_name, num_rows
+     from all_tables
+  where owner='CMS_HGC_HGCAL_COND'
+```
+
+
+``` 
+/* see all attempts to upload and their success/failure status and their logs */
+select * from CMS_HGC_CORE_MANAGEMNT.CONDITIONS_DATA_AUDITLOG where RECORD_LASTUPDATE_USER LIKE 'Ali%';
+```
+
+```
+/* seeeverything uploaded successfully by Ali */
+select * from CMS_HGC_CORE_COND.COND_DATA_SETS where RECORD_INSERTION_USER LIKE '%Ali%;
+```
+
+```
+/* stupid way to see one CV table that I uploaded /*
+select * from CMS_HGC_HGCAL_COND.HGC_CERN_SENSOR_CV
+INNER JOIN CMS_HGC_CORE_COND.COND_DATA_SETS
+ON CMS_HGC_HGCAL_COND.HGC_CERN_SENSOR_CV.CONDITION_DATA_SET_ID = CMS_HGC_CORE_COND.COND_DATA_SETS.CONDITION_DATA_SET_ID
+where CMS_HGC_CORE_COND.COND_DATA_SETS.RECORD_INSERTION_USER LIKE '%Ali%'
+ORDER BY CELL_NR;
+```
+
+
+```
+/* See the uploaded registered parts (wafers) uploaded by Alex*/
+select * from CMS_HGC_CORE_CONSTRUCT.PARTS Where RECORD_INSERTION_USER LIKE 'Alex%' order by RECORD_INSERTION_TIME ASC;
+```
+

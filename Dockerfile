@@ -1,19 +1,21 @@
 FROM cern/cc7-base:latest
-MAINTAINER Ali AlKadhim vsp_ali@yahoo.com
+MAINTAINER Ali AlKadhim aa18dg@fsu.edu
 
 # If not running docker with --volume /home/ali/Desktop/Pulled_Github_Repositories/PASCAL:/home then make those directories and copy stuff into them
 
 RUN mkdir -p /home/queries /home/images /home/miscillaneous /home/notebooks /home/outputs /home/utils /home/logs
 # Copy Stuff from host in the HOST_CURRENT_DIRECTORY/utilts to /home/ in the server
 COPY queries/* /home/queries
-#COPY images/* /home/images
-# COPY miscillaneous/* /home/miscillaneous
-# COPY notebooks/* /home/notebooks
-#COPY outputs/* /home/outputs
+# COPY images/* /home/images
+COPY miscillaneous/* /home/miscillaneous
+COPY notebooks/* /home/notebooks
+# COPY outputs/* /home/outputs
 COPY utils/* /home/utils
 
 
-# Otherwise, if running docker with --volume /home/ali/Desktop/Pulled_Github_Repositories/PASCAL:/home then dona
+# Otherwise, if running docker with --volume /home/ali/Desktop/Pulled_Github_Repositories/PASCAL:/home then 
+
+
 # install non-oracle dependencies
 RUN yum -y update && \
         yum clean all && \
@@ -42,7 +44,8 @@ RUN yum -y update && \
         # dnf-plugins-core \
         install binutils
 
-
+RUN cd /home
+# RUN git clone https://github.com/AliAlkadhim/PASCAL.git
 # Change Cernonly repo to enabled. This is the 28th line in /etc/yum.repos.d/CentOS-CERN.repo
 RUN sed -i '28s;enabled=0;enabled=1;g' /etc/yum.repos.d/CentOS-CERN.repo
 
@@ -69,6 +72,9 @@ RUN wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tgz --no-check-cer
 ENV LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
 ENV PASCAL=/home
 
+# if using git
+# RUN mkdir /home/utils
+# COPY utils/* /home/utils
 # INSTALL DCA PYTHON PACKAGES AND SQLITE
 RUN cd /home && \
         pip3.7 install -r utils/requirements.txt && \
@@ -138,8 +144,9 @@ RUN cd /home && \
 # ENV export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/usr/local/lib64:/usr/lib64
 ENV LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
 # UPDATE PIP
+#python3 -m pip install urllib3==1.26.6
 RUN pip3.7 install --upgrade pip && \
-          pip3.7 install jupyterlab pandas matplotlib numpy ipywidgets argparse
+          pip3.7 install urllib3==1.26.6 jupyterlab pandas matplotlib numpy ipywidgets argparse
 RUN jupyter nbextension enable --py widgetsnbextension
           
 

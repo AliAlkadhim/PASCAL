@@ -1,0 +1,6 @@
+click on "INT2R_LB_LOCAL" on left dropdown
+check on "columns", and expand "All schemas" with + sign
+check on "CMS_HGC_HGCAL_COND"
+click on binoculars
+click on a table you want to browse, e.g. "HGC_CERN_SENSOR_IV"
+Click on "columns", "Data", etc in the top tab 
