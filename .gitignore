@@ -161,4 +161,5 @@ cython_debug/
 
 *Kite*
 *kite*
-/outputs/*.csv
+outputs/*.csv
+outputs/*
