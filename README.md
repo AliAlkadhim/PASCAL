@@ -149,28 +149,60 @@ Here are what the options do
 
 ## Features (potentially) to be implemented in the next version 
 
-1. the option to run the docker querieries non-interactively - i.e. a user will be able to do a simple query anywhere in the local machine terminal. (The issue here is the tunnel command, I'll have to figure out a way that the lxplus password can be passed to docker run securely without having to type it).
-2. Containarize the queries into functions with one variable, the sensor ID. The user can run the program from anywhere in the terminal by calleing eg 
-```docker run pascal whereis Sensor ID 24958```
+### 1. The option to run the docker queries non-interactively - i.e. a user will be able to do a simple query anywhere in the local machine terminal. (The issue here is the tunnel command, I'll have to figure out a way that the lxplus password can be passed to docker run securely without having to type it).  
+
+### 2. Containerize the queries into functions with one variable, the sensor ID. The user can run the program from anywhere in the terminal by calling e.g.
+
+```
+docker run pascal whereis Sensor ID 24958
+```
+
 But allow the possibility for people to enter SQL commands themselves. These commands can be inserted in the command line or called on by typing the command in .txt` or `.sql` file.
-3. Make the feature to expert the results of the query into a csv file or a json file. Maybe also ROOT, Yaml
-4. Documentation of everything on readthedocs and elsewhere if needed.
-5. Add "query helpers" being BOTH: the GUI and/or the voice AI system
-6. See if I can use [OpenShift](OpenShift.md) fot it somehow
-7. Incorporate AI speech recognition feature likerrrrrrrrrrr r AI assistant that you can talk to.  https://www.ai2sql.io/
-8. Make the use of the program improve the program itself, especially for your needs, such that it learns from your queries, like a recommender system. such that the AI tool is able to self-correct  its prediction for what you want.
-9. More help for particular queries that  you type by tab support autocompletion.
-10. more support arm64 architectures. ((it already works for them Im pretty sure)
-11. have one page on readthedocs be my jupyter notebook, maybe it can be opened in Swan like Olia suggested. It will have a button (open in swan)
-12. Have a GUI query builder
-13. I think this thing should be a web application hosted on [[PaaS or OpenShift]]. Or API. The application would  be a browser, s SQL query, or a SQL query helper with viuce, etc. It will also have the possibility of just starting a jupyter notebook.  
-14. Collect info from users on how they liked it and what can be improved
-15. Have more complex useful queries, especially for HPK data.
-16. add a query with the analogue of "did my sensor upload correctly?"
-17. THe system improves itself in the future. Everytime you use it for a query, it remembers that query and  shows that to you.
-18. Support uploading results as well 
-19. Could be incorporated into Patrick code openshift API
-20. hgcweb?
+
+> Each query is saved in a .sql file, and the function just opens and grabs these
+> **DONE**
+
+### 3. Get input from HGCAL community on what data they would like to retrieve -> containarize into `.sql` templates. E.g. HPK data, tables other than Si sensors.
+
+### 4. Make the feature to expert the results of the query into a csv file or a json file. Maybe also ROOT, Yaml
+> **DONE FOR CSV/JSON**
+
+
+### 5. Make "query helpers" being a GUI query-builder
+> **BASICALLY DONE FOR JUPYTER**
+
+
+
+### 6. See if I can use [OpenShift](OpenShift.md) for it somehow. I think this thing should be a web application hosted on [[PaaS or OpenShift]]. Or API. The application would  be a browser, s SQL query, or a SQL query helper with voice, etc. It will also have the possibility of just starting a jupyter notebook.
+
+> Related: see if it can talk to Phillip's Module assembly API on Openshift
+
+### 7. Incorporate AI speech recognition feature like AI assistant that you can talk to.  e.g. https://www.ai2sql.io/
+Example: saying
+
+> "What baseplates and detector parts at what locations?"
+
+Which would be translated to the correct SQL command and executed with output.
+
+### 8. Make the use of the program improve the program itself, especially for your needs, such that it learns from your queries, like a recommender system. such that the AI tool is able to self-correct  its prediction for what you want.
+Related:
+
+> Query History/log. Maybe every time you run `execute_query()`
+
+> Option to Save query if you like it, or put your own query in the queries directory as a .sql  Queries.
+> Collect info from users on how they liked it and what can be improved.
+
+### 9. More help for particular queries that you type support autocompletion by tab.
+
+
+### 10. more support arm64 architectures. (it already works but it's not arm-based)
+
+### 11. have one page on readthedocs be my jupyter notebook, maybe it can be opened in Swan like Olia suggested. It will have a button (open in swan).
+  
+### 12. Support uploading results as well with dbloader.
+
+
+### 13. hgcweb?
 
 Queries:
 - What baseplates and detector parts at what locations.
