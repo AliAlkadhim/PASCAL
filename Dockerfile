@@ -32,7 +32,7 @@ RUN yum -y update && \
 	lsof \
 	nano \
 	xmltooling-schemas \
-#	git \
+	git \
         tree \
 	python-virtualenv.noarch \
 	which \
@@ -42,7 +42,7 @@ RUN yum -y update && \
         epel-release \
         # dnf \
         # dnf-plugins-core \
-        install binutils
+        # install binutils
 
 RUN cd /home
 # RUN git clone https://github.com/AliAlkadhim/PASCAL.git
@@ -64,7 +64,7 @@ RUN wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tgz --no-check-cer
         tar xzf Python-3.7.2.tgz && \
         cd Python-3.7.2 && \
         ./configure --prefix=/usr/local --enable-loadable-sqlite-extensions --enable-shared --with-lto --enable-optimizations && \
-        make -j 10 && \
+        make -j `nproc` && \
         make install
 
 # UPDATE ENV
